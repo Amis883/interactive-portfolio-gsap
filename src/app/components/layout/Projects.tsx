@@ -1,12 +1,14 @@
+
+import gsap from "gsap";
 import ProjectCard from "../ui/ProjectCard";
 
 export default function Projects() {
   return (
     <section className="py-40 relative overflow-hidden">
-      <div className="relative w-full h-[1200px]">
+      <div className="relative w-full h-[915px]">
         {/* LEFT SIDE */}
         <div className="absolute top-[0%] left-[10%]">
-        {/* <div className="absolute top-[20%] left-[35%] rotate-[-5deg] scale-90"> */}
+          {/* <div className="absolute top-[20%] left-[35%] rotate-[-5deg] scale-90"> */}
           <ProjectCard title="Project 1" category="Design" image="/p1.png" />
         </div>
 
