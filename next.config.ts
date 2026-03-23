@@ -1,8 +1,7 @@
-import type { NextConfig } from "next";
-
 const nextConfig: NextConfig = {
-  /* config options here */
-  reactCompiler: true,
+  turbopack: {
+    root: "/Users/hodakakhki/Documents/interactive-portfolio-gsap",
+  },
 };
 
 export default nextConfig;
