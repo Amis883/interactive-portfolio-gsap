@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 export function HeroText({ children }: { children: ReactNode }) {
   return (
-    <h1 className="text-hero font-light tracking-tight leading-[1.1]">
+    <h1 className="text-hero font-light tracking-tight leading-[1.05]">
       {children}
     </h1>
   );
