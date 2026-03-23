@@ -1,7 +1,8 @@
-const nextConfig: NextConfig = {
-  turbopack: {
-    root: "/Users/hodakakhki/Documents/interactive-portfolio-gsap",
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    domains: ["images.unsplash.com"],
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
