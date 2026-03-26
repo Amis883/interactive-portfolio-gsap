@@ -8,7 +8,7 @@ This project focuses on **smooth animations, clean UI, and performance**, reflec
 
 ## 🚀 Live Demo
 
-👉 https://your-domain.vercel.app/
+👉coming SOON :)
 
 ---
 
