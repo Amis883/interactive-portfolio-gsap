@@ -215,7 +215,7 @@ export default function MySkills() {
                 background: "#ffffff",
                 borderRadius: 20,
                 padding: "24px 20px",
-                width: 220,
+                width: 260,
                 flexShrink: 0,
                 boxShadow: "0 8px 32px rgba(0,0,0,0.45)",
                 zIndex: 1,
