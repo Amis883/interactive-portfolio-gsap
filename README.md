@@ -2,7 +2,7 @@
 
 A fully responsive personal portfolio website built from scratch with **Next.js 15**, **TypeScript**, **Tailwind CSS**, and **GSAP**. Designed to showcase frontend skills, work experience, case studies, and contact information with smooth scroll-triggered animations throughout.
 
-🔗 **Live:** [hoda-portfolio-m0c8zsv98-amis883s-projects.vercel.app](https://hoda-portfolio-m0c8zsv98-amis883s-projects.vercel.app/)
+🔗 **Live:** [coming soon!)
 
 ---
 
