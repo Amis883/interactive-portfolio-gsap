@@ -1,12 +1,13 @@
-import MainLayout from "./components/layout/MainLayout";
-// import Hero from "./components/layout/Hero";
-import Projects from "./components/layout/Projects";
+import CaseStudies from "./components/CaseStudies";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <MainLayout>
-      {/* <Hero /> */}
-      <Projects />
-    </MainLayout>
+    <main className="min-h-screen bg-[#0a0a0a]">
+      <Header />
+      <Hero />
+      <CaseStudies />
+    </main>
   );
 }

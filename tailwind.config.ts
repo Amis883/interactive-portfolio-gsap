@@ -1,15 +1,17 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)"],
+        mono: ["'JetBrains Mono'", "'Fira Code'", "ui-monospace", "monospace"],
       },
-      fontSize: {
-        hero: "clamp(3rem, 8vw, 7rem)",
-        display: "clamp(2rem, 5vw, 4rem)",
+      colors: {
+        green: {
+          400: "#4ade80",
+          500: "#22c55e",
+        },
       },
     },
   },
