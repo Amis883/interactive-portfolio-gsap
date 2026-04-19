@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import Image from "next/image";
 
 const LOGOS = [
   {
@@ -103,10 +104,11 @@ export default function Hero() {
         backgroundColor: "#0a0a0a",
         display: "flex",
         flexDirection: "column",
-        padding: "64px 80px",
+        padding: "80px 180px",
         overflow: "hidden",
         fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
         boxSizing: "border-box",
+        marginTop: "80px",
       }}
     >
       {/* ── Main row ── */}
@@ -199,23 +201,18 @@ export default function Hero() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              position: "relative",
               boxShadow:
                 "0 0 80px 20px rgba(0,0,0,0.85), inset 0 0 0 1px rgba(255,255,255,0.05)",
             }}
           >
-            {/*
-              Replace with:
-              <Image src="/your-photo.jpg" alt="Your Name" fill style={{ objectFit:"cover" }} />
-            */}
-            <span
-              style={{
-                fontFamily: "monospace",
-                fontSize: "0.75rem",
-                color: "#4b5563",
-              }}
-            >
-              Photo here
-            </span>
+            <Image
+              src="/hero.jpg"
+              alt="profile"
+              fill
+              style={{ objectFit: "cover" }}
+              priority
+            />
           </div>
         </div>
       </div>

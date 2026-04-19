@@ -9,7 +9,7 @@ export default function HomePage() {
       <Header />
       <Hero />
       <CaseStudies />
-      <MySkills/>
+      <MySkills />
     </main>
   );
 }
