@@ -1,5 +1,6 @@
 import CaseStudies from "./components/CaseStudies";
 import EducationExperience from "./components/EducationExperience";
+import GetInTouch from "./components/GetInTouch";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import MySkills from "./components/MySkills";
@@ -12,6 +13,7 @@ export default function HomePage() {
       <CaseStudies />
       <MySkills />
       <EducationExperience />
+      <GetInTouch/>
     </main>
   );
 }
