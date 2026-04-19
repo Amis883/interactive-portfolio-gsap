@@ -1,6 +1,7 @@
 import CaseStudies from "./components/CaseStudies";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import MySkills from "./components/MySkills";
 
 export default function HomePage() {
   return (
@@ -8,6 +9,7 @@ export default function HomePage() {
       <Header />
       <Hero />
       <CaseStudies />
+      <MySkills/>
     </main>
   );
 }
