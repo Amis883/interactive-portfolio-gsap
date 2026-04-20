@@ -39,8 +39,8 @@ A fully responsive personal portfolio website built from scratch with **Next.js 
 ### Installation
 
 ```bash
-git clone https://github.com/Amis883/your-portfolio.git
-cd your-portfolio
+git clone https://github.com/Amis883/interactive-portfolio-gsap.git
+cd interactive-portfolio-gsap
 npm install
 npm run dev
 ```
