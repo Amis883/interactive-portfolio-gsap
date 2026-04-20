@@ -1,20 +1,241 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-}
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root { --bg: #0a0a0a; --green: #22c55e; }
+
+html { scroll-behavior: smooth; }
 
 html, body {
-  margin: 0;
-  padding: 0;
-  background-color: #0a0a0a;
-  color: #ffffff;
+  background-color: var(--bg);
+  color: #fff;
+  font-family: "JetBrains Mono", monospace;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
 }
 
-a {
-  text-decoration: none;
+section[id] { scroll-margin-top: 90px; }
+
+/* ── Header ───────────────────────────────────────────────── */
+.header-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 0 12px;
 }
 
-::-webkit-scrollbar { width: 6px; }
+.header-inner {
+  width: 100%;
+  max-width: 1110px;
+  margin-top: 16px;
+  background-color: #111111;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.header-nav { display: flex; align-items: center; gap: 24px; list-style: none; margin: 0; padding: 0; }
+.header-icons { display: flex; align-items: center; gap: 16px; }
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; flex-direction: column; gap: 5px; }
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.hero-section {
+  position: relative;
+  min-height: 100svh;
+  background-color: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  padding: 120px 48px 56px;
+  overflow: hidden;
+}
+
+.hero-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  gap: 40px;
+  padding: 80px 180px;
+}
+
+.hero-text { display: flex; flex-direction: column; gap: 20px; max-width: 500px; flex: 1; }
+
+.hero-avatar {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  background-color: #1e2a38;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hero-logos { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 48px; }
+.hero-logo-pill {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  color: #d1d5db;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ── Case Studies ─────────────────────────────────────────── */
+.case-section { background: #fff; padding: 80px 48px; }
+.case-row { display: flex; flex-direction: row; align-items: center; gap: 48px; flex-wrap: wrap; }
+.case-text { flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+.case-image { flex: 1 1 280px; min-width: 0; border-radius: 12px; overflow: hidden; aspect-ratio: 4/3; }
+
+/* ── Skills ───────────────────────────────────────────────── */
+.skills-section {
+  background: #0a0a0a;
+  padding: 80px 32px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skills-desktop { display: flex; }
+.skills-mobile  { display: none; }
+
+/* ── Timeline ─────────────────────────────────────────────── */
+.tl-section { background: #fff; padding: 72px 48px 88px; }
+.tl-row { display: flex; gap: 0; align-items: stretch; }
+.tl-spine { width: 48px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; }
+
+/* ── Contact ──────────────────────────────────────────────── */
+.contact-section {
+  background: #0a0a0a;
+  padding: 88px 24px 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-form { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 20px; }
+
+/* ════════════════════════════════════════════════════════════
+   TABLET — iPad Mini (768px) and below
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Header */
+  .header-inner { padding: 14px 20px; margin-top: 10px; }
+  .header-nav   { display: none; }
+  .header-icons { display: none; }
+  .hamburger    { display: flex !important; }
+
+  .mobile-menu {
+    width: 100%;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 16px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .mobile-menu a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    color: #9ca3af;
+    text-decoration: none;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: block;
+  }
+  .mobile-menu-icons { display: flex; gap: 20px; padding-top: 16px; }
+
+  /* Hero */
+  .hero-section { padding: 100px 24px 48px; }
+  .hero-row { flex-direction: column-reverse; align-items: center; text-align: center; gap: 28px; }
+  .hero-text { max-width: 100%; align-items: center; }
+  .hero-avatar { width: 180px; height: 180px; }
+  .hero-logos { justify-content: center; margin-top: 32px; }
+  .hero-logo-pill { padding: 8px 14px; font-size: 0.75rem; }
+
+  /* Case Studies */
+  .case-section { padding: 56px 20px; }
+  .case-row { flex-direction: column; gap: 28px; }
+  .case-text { flex: unset; width: 100%; }
+  .case-image { flex: unset; width: 100%; }
+
+  /* Skills — switch to stacked */
+  .skills-section { padding: 56px 20px 72px; }
+  .skills-desktop { display: none !important; }
+  .skills-mobile  { display: flex !important; flex-direction: column; gap: 16px; width: 100%; max-width: 480px; }
+
+  /* Timeline */
+  .tl-section { padding: 56px 20px 72px; }
+  .tl-row { flex-direction: column; gap: 0; }
+  .tl-spine { display: none !important; }
+
+  /* Contact */
+  .contact-section { padding: 64px 20px 56px; }
+  .contact-form { max-width: 100%; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   MOBILE — 480px and below (iPhone SE, Pixel 7, Samsung S8+)
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+
+  section[id] { scroll-margin-top: 80px; }
+
+  /* Header */
+  .header-inner { padding: 12px 16px; margin-top: 8px; border-radius: 10px; }
+
+  /* Hero */
+  .hero-section { padding: 90px 16px 40px; }
+  .hero-avatar  { width: 140px; height: 140px; }
+  .hero-logos   { gap: 8px; }
+  .hero-logo-pill { padding: 7px 12px; font-size: 0.7rem; }
+
+  /* Case Studies */
+  .case-section { padding: 48px 16px; }
+
+  /* Skills */
+  .skills-section { padding: 48px 16px 60px; }
+
+  /* Timeline */
+  .tl-section { padding: 48px 16px 60px; }
+
+  /* Contact */
+  .contact-section { padding: 56px 16px 48px; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   SMALL MOBILE — 375px and below (iPhone SE, Samsung S8)
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 375px) {
+  .hero-section { padding: 85px 14px 36px; }
+  .hero-avatar  { width: 120px; height: 120px; }
+  .hero-logo-pill { font-size: 0.65rem; padding: 6px 10px; }
+  .case-section, .tl-section, .contact-section, .skills-section { padding-left: 14px; padding-right: 14px; }
+}
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: #0a0a0a; }
 ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }

@@ -3,10 +3,10 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ─── Data ─────────────────────────────────────────────────── */
 const categories = [
   {
     id: "languages",
@@ -15,11 +15,10 @@ const categories = [
     iconBg: "#fce7f3",
     iconColor: "#ec4899",
     barColor: "#ec4899",
-    elevated: false,
     icon: (
       <svg
-        width="20"
-        height="20"
+        width="18"
+        height="18"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -45,11 +44,10 @@ const categories = [
     iconBg: "#ede9fe",
     iconColor: "#7c3aed",
     barColor: "#7c3aed",
-    elevated: true,
     icon: (
       <svg
-        width="20"
-        height="20"
+        width="18"
+        height="18"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -66,7 +64,7 @@ const categories = [
     skills: [
       { name: "React / Next.js", pct: 93 },
       { name: "Vue 3 / Quasar", pct: 85 },
-      { name: "Tailwind CSS / Bootstrap", pct: 90 },
+      { name: "Tailwind / Bootstrap", pct: 90 },
       { name: "Material UI", pct: 82 },
     ],
   },
@@ -77,11 +75,10 @@ const categories = [
     iconBg: "#dbeafe",
     iconColor: "#3b82f6",
     barColor: "#3b82f6",
-    elevated: false,
     icon: (
       <svg
-        width="20"
-        height="20"
+        width="18"
+        height="18"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -101,7 +98,6 @@ const categories = [
   },
 ];
 
-/* ─── Progress Bar ─────────────────────────────────────────── */
 function SkillBar({
   name,
   pct,
@@ -112,25 +108,23 @@ function SkillBar({
   color: string;
 }) {
   const barRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(barRef.current, {
         width: 0,
         duration: 1,
         ease: "power2.out",
-        scrollTrigger: { trigger: barRef.current, start: "top 90%" },
+        scrollTrigger: { trigger: barRef.current, start: "top 92%" },
       });
     });
     return () => ctx.revert();
   }, []);
-
   return (
-    <div style={{ marginBottom: 14 }}>
+    <div style={{ marginBottom: 12 }}>
       <p
         style={{
-          margin: "0 0 5px",
-          fontSize: 13,
+          margin: "0 0 4px",
+          fontSize: 12,
           fontWeight: 600,
           color: "#1f2937",
           fontFamily: "sans-serif",
@@ -160,10 +154,67 @@ function SkillBar({
   );
 }
 
-/* ─── Section ──────────────────────────────────────────────── */
+function CardContent({ cat }: { cat: (typeof categories)[0] }) {
+  return (
+    <>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+          marginBottom: 16,
+        }}
+      >
+        <div
+          style={{
+            width: 34,
+            height: 34,
+            borderRadius: 9,
+            background: cat.iconBg,
+            color: cat.iconColor,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+          }}
+        >
+          {cat.icon}
+        </div>
+        <div>
+          <h3
+            style={{
+              margin: 0,
+              fontSize: 13,
+              fontWeight: 700,
+              color: "#111827",
+              fontFamily: "sans-serif",
+            }}
+          >
+            {cat.title}
+          </h3>
+          <p
+            style={{
+              margin: "1px 0 0",
+              fontSize: 10,
+              color: "#9ca3af",
+              fontFamily: "'JetBrains Mono',monospace",
+            }}
+          >
+            {cat.subtitle}
+          </p>
+        </div>
+      </div>
+      {cat.skills.map((s) => (
+        <SkillBar key={s.name} name={s.name} pct={s.pct} color={cat.barColor} />
+      ))}
+    </>
+  );
+}
+
 export default function MySkills() {
   const headerRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
+  const desktopRef = useRef<HTMLDivElement>(null);
+  const mobileRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -172,126 +223,62 @@ export default function MySkills() {
         defaults: { ease: "power3.out" },
       });
       tl.from(headerRef.current, { y: 24, opacity: 0, duration: 0.7 });
-      if (cardsRef.current) {
+      if (desktopRef.current)
         tl.from(
-          cardsRef.current.children,
-          { y: 32, opacity: 0, stagger: 0.12, duration: 0.65 },
+          desktopRef.current.children,
+          { y: 28, opacity: 0, stagger: 0.1, duration: 0.6 },
           "-=0.3",
         );
-      }
+      if (mobileRef.current)
+        tl.from(
+          mobileRef.current.children,
+          { y: 28, opacity: 0, stagger: 0.1, duration: 0.6 },
+          "-=0.3",
+        );
     });
     return () => ctx.revert();
   }, []);
 
+  const sideCard = (side: "left" | "right") =>
+    ({
+      background: "#fff",
+      borderRadius: 18,
+      padding: "28px 24px",
+      width: 260,
+      flexShrink: 0,
+      boxShadow: "0 8px 32px rgba(0,0,0,0.45)",
+      zIndex: 1,
+      alignSelf: "center",
+      marginTop: 56,
+      ...(side === "left" ? { marginRight: -18 } : { marginLeft: -18 }),
+    }) as React.CSSProperties;
+
   return (
-    <section
-      style={{
-        background: "#0a0a0a",
-        padding: "80px 32px 100px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      {/* Outer layout: side cards + big center panel */}
+    <section id="my-skills" className="skills-section">
+      {/* ── Desktop overlapping layout ── */}
       <div
-        ref={cardsRef}
+        ref={desktopRef}
+        className="skills-desktop"
         style={{
-          display: "flex",
           alignItems: "center",
           justifyContent: "center",
           gap: 0,
           width: "100%",
-          maxWidth: 900,
-          position: "relative",
+          maxWidth: 880,
         }}
       >
-        {/* LEFT card — sits behind/beside the big panel */}
-        {(() => {
-          const cat = categories[0];
-          return (
-            <div
-              style={{
-                background: "#ffffff",
-                borderRadius: 20,
-                padding: "24px 20px",
-                width: 260,
-                flexShrink: 0,
-                boxShadow: "0 8px 32px rgba(0,0,0,0.45)",
-                zIndex: 1,
-                marginRight: -20,
-                alignSelf: "center",
-                marginTop: 60,
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                  marginBottom: 20,
-                }}
-              >
-                <div
-                  style={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: 10,
-                    background: cat.iconBg,
-                    color: cat.iconColor,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  {cat.icon}
-                </div>
-                <div>
-                  <h3
-                    style={{
-                      margin: 0,
-                      fontSize: 14,
-                      fontWeight: 700,
-                      color: "#111827",
-                      fontFamily: "sans-serif",
-                    }}
-                  >
-                    {cat.title}
-                  </h3>
-                  <p
-                    style={{
-                      margin: "2px 0 0",
-                      fontSize: 10,
-                      color: "#9ca3af",
-                      fontFamily: "'JetBrains Mono',monospace",
-                    }}
-                  >
-                    {cat.subtitle}
-                  </p>
-                </div>
-              </div>
-              {cat.skills.map((s) => (
-                <SkillBar
-                  key={s.name}
-                  name={s.name}
-                  pct={s.pct}
-                  color={cat.barColor}
-                />
-              ))}
-            </div>
-          );
-        })()}
+        <div style={sideCard("left")}>
+          <CardContent cat={categories[0]} />
+        </div>
 
-        {/* BIG CENTER PANEL — white rounded container */}
         <div
           style={{
-            background: "#ffffff",
-            borderRadius: 24,
-            padding: "28px 28px 24px",
+            background: "#fff",
+            borderRadius: 22,
+            padding: "26px 26px 22px",
             flex: "1 1 0",
-            minWidth: 280,
-            maxWidth: 360,
+            minWidth: 260,
+            maxWidth: 340,
             boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
             zIndex: 0,
             display: "flex",
@@ -299,38 +286,44 @@ export default function MySkills() {
             alignItems: "center",
           }}
         >
-          {/* Header inside panel */}
           <div
             ref={headerRef}
             style={{
               display: "flex",
               alignItems: "center",
               gap: 12,
-              marginBottom: 24,
+              marginBottom: 22,
             }}
           >
             <div
               style={{
-                width: 48,
-                height: 48,
+                width: 46,
+                height: 46,
                 borderRadius: "50%",
                 background: "linear-gradient(135deg,#a78bfa,#7c3aed)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 color: "#fff",
-                fontSize: 18,
+                fontSize: 15,
                 fontWeight: 700,
                 flexShrink: 0,
+                position: "relative",
               }}
             >
-              Y
+              <Image
+                className="hero-avatar"
+                src="/hero.jpg"
+                alt="Hoda Kakhki"
+                style={{ objectFit: "cover" }}
+                fill
+              />
             </div>
             <div>
               <h2
                 style={{
                   margin: 0,
-                  fontSize: 18,
+                  fontSize: 17,
                   fontWeight: 700,
                   color: "#111827",
                   fontFamily: "sans-serif",
@@ -341,92 +334,29 @@ export default function MySkills() {
               <p
                 style={{
                   margin: "2px 0 0",
-                  fontSize: 11,
+                  fontSize: 10,
                   color: "#9ca3af",
                   fontFamily: "'JetBrains Mono',monospace",
                 }}
               >
-                Here&apos;s my main skill, pick card to reveal
+                Here&apos;s my main skill
               </p>
             </div>
           </div>
-
-          {/* Middle skill card inside panel */}
-          {(() => {
-            const cat = categories[1];
-            return (
-              <div
-                style={{
-                  width: "100%",
-                  borderRadius: 16,
-                  border: "1px solid #f3f4f6",
-                  padding: "20px 16px",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10,
-                    marginBottom: 18,
-                  }}
-                >
-                  <div
-                    style={{
-                      width: 36,
-                      height: 36,
-                      borderRadius: 10,
-                      background: cat.iconBg,
-                      color: cat.iconColor,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                    }}
-                  >
-                    {cat.icon}
-                  </div>
-                  <div>
-                    <h3
-                      style={{
-                        margin: 0,
-                        fontSize: 14,
-                        fontWeight: 700,
-                        color: "#111827",
-                        fontFamily: "sans-serif",
-                      }}
-                    >
-                      {cat.title}
-                    </h3>
-                    <p
-                      style={{
-                        margin: "2px 0 0",
-                        fontSize: 10,
-                        color: "#9ca3af",
-                        fontFamily: "'JetBrains Mono',monospace",
-                      }}
-                    >
-                      {cat.subtitle}
-                    </p>
-                  </div>
-                </div>
-                {cat.skills.map((s) => (
-                  <SkillBar
-                    key={s.name}
-                    name={s.name}
-                    pct={s.pct}
-                    color={cat.barColor}
-                  />
-                ))}
-              </div>
-            );
-          })()}
-
-          {/* Footer text */}
+          <div
+            style={{
+              width: "100%",
+              borderRadius: 14,
+              border: "1px solid #f3f4f6",
+              padding: "18px 14px",
+            }}
+          >
+            <CardContent cat={categories[1]} />
+          </div>
           <p
             style={{
-              marginTop: 20,
-              fontSize: 12,
+              marginTop: 16,
+              fontSize: 11,
               color: "#9ca3af",
               fontFamily: "'JetBrains Mono',monospace",
               textAlign: "center",
@@ -436,82 +366,89 @@ export default function MySkills() {
           </p>
         </div>
 
-        {/* RIGHT card */}
-        {(() => {
-          const cat = categories[2];
-          return (
-            <div
+        <div style={sideCard("right")}>
+          <CardContent cat={categories[2]} />
+        </div>
+      </div>
+
+      {/* ── Mobile stacked layout ── */}
+      <div ref={mobileRef} className="skills-mobile">
+        {/* Header pill */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 12,
+            background: "#fff",
+            borderRadius: 14,
+            padding: "16px 18px",
+          }}
+        >
+          <div
+            style={{
+              width: 42,
+              height: 42,
+              borderRadius: "50%",
+              background: "linear-gradient(135deg,#a78bfa,#7c3aed)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#fff",
+              fontSize: 14,
+              fontWeight: 700,
+              flexShrink: 0,
+            }}
+          >
+            HK
+          </div>
+          <div>
+            <h2
               style={{
-                background: "#ffffff",
-                borderRadius: 20,
-                padding: "24px 20px",
-                width: 260,
-                flexShrink: 0,
-                boxShadow: "0 8px 32px rgba(0,0,0,0.45)",
-                zIndex: 1,
-                marginLeft: -20,
-                alignSelf: "center",
-                marginTop: 60,
+                margin: 0,
+                fontSize: 16,
+                fontWeight: 700,
+                color: "#111827",
+                fontFamily: "sans-serif",
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                  marginBottom: 20,
-                }}
-              >
-                <div
-                  style={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: 10,
-                    background: cat.iconBg,
-                    color: cat.iconColor,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  {cat.icon}
-                </div>
-                <div>
-                  <h3
-                    style={{
-                      margin: 0,
-                      fontSize: 14,
-                      fontWeight: 700,
-                      color: "#111827",
-                      fontFamily: "sans-serif",
-                    }}
-                  >
-                    {cat.title}
-                  </h3>
-                  <p
-                    style={{
-                      margin: "2px 0 0",
-                      fontSize: 10,
-                      color: "#9ca3af",
-                      fontFamily: "'JetBrains Mono',monospace",
-                    }}
-                  >
-                    {cat.subtitle}
-                  </p>
-                </div>
-              </div>
-              {cat.skills.map((s) => (
-                <SkillBar
-                  key={s.name}
-                  name={s.name}
-                  pct={s.pct}
-                  color={cat.barColor}
-                />
-              ))}
-            </div>
-          );
-        })()}
+              My Skills
+            </h2>
+            <p
+              style={{
+                margin: "2px 0 0",
+                fontSize: 11,
+                color: "#9ca3af",
+                fontFamily: "'JetBrains Mono',monospace",
+              }}
+            >
+              Frontend Developer
+            </p>
+          </div>
+        </div>
+        {/* All 3 cards */}
+        {categories.map((cat) => (
+          <div
+            key={cat.id}
+            style={{
+              background: "#fff",
+              borderRadius: 14,
+              padding: "18px 16px",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.35)",
+            }}
+          >
+            <CardContent cat={cat} />
+          </div>
+        ))}
+        <p
+          style={{
+            textAlign: "center",
+            fontSize: 11,
+            color: "#6b7280",
+            fontFamily: "'JetBrains Mono',monospace",
+          }}
+        >
+          See my complete skills on my resume
+        </p>
       </div>
     </section>
   );
