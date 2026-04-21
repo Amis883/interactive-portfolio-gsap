@@ -36,12 +36,12 @@ section[id] { scroll-margin-top: 90px; }
 
 .header-inner {
   width: 100%;
-  max-width: 1110px;
-  margin-top: 16px;
+  max-width: 1200px;
+  margin-top: 20px;
   background-color: #111111;
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 12px;
-  padding: 16px 28px;
+  padding: 20px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -60,8 +60,11 @@ section[id] { scroll-margin-top: 90px; }
   background-color: #0a0a0a;
   display: flex;
   flex-direction: column;
-  padding: 120px 48px 56px;
+  padding: 130px 80px 64px;
   overflow: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .hero-row {
@@ -71,14 +74,13 @@ section[id] { scroll-margin-top: 90px; }
   justify-content: space-between;
   flex: 1;
   gap: 40px;
-  padding: 80px 180px;
 }
 
 .hero-text { display: flex; flex-direction: column; gap: 20px; max-width: 500px; flex: 1; }
 
 .hero-avatar {
-  width: 300px;
-  height: 300px;
+  width: 350px;
+  height: 350px;
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.1);
@@ -89,17 +91,22 @@ section[id] { scroll-margin-top: 90px; }
   flex-shrink: 0;
 }
 
-.hero-logos { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 48px; }
+.hero-logos { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .hero-logo-pill {
-  display: flex; align-items: center; gap: 8px;
-  padding: 10px 16px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 6px;
-  color: #d1d5db;
-  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 8px;
+  color: #9ca3af;
+  font-size: 0.875rem;
   font-weight: 600;
   white-space: nowrap;
+  min-width: 140px;
+  transition: background 0.2s, color 0.2s;
 }
 
 /* ── Case Studies ─────────────────────────────────────────── */
@@ -171,9 +178,9 @@ section[id] { scroll-margin-top: 90px; }
   .hero-section { padding: 100px 24px 48px; }
   .hero-row { flex-direction: column-reverse; align-items: center; text-align: center; gap: 28px; }
   .hero-text { max-width: 100%; align-items: center; }
-  .hero-avatar { width: 180px; height: 180px; }
+  .hero-avatar { width: 200px; height: 200px; }
   .hero-logos { justify-content: center; margin-top: 32px; }
-  .hero-logo-pill { padding: 8px 14px; font-size: 0.75rem; }
+  .hero-logo-pill { padding: 10px 16px; font-size: 0.75rem; min-width: unset; }
 
   /* Case Studies */
   .case-section { padding: 56px 20px; }
@@ -210,7 +217,7 @@ section[id] { scroll-margin-top: 90px; }
   .hero-section { padding: 90px 16px 40px; }
   .hero-avatar  { width: 140px; height: 140px; }
   .hero-logos   { gap: 8px; }
-  .hero-logo-pill { padding: 7px 12px; font-size: 0.7rem; }
+  .hero-logo-pill { padding: 8px 13px; font-size: 0.7rem; min-width: unset; }
 
   /* Case Studies */
   .case-section { padding: 48px 16px; }
@@ -231,7 +238,7 @@ section[id] { scroll-margin-top: 90px; }
 @media (max-width: 375px) {
   .hero-section { padding: 85px 14px 36px; }
   .hero-avatar  { width: 120px; height: 120px; }
-  .hero-logo-pill { font-size: 0.65rem; padding: 6px 10px; }
+  .hero-logo-pill { font-size: 0.65rem; padding: 7px 10px; min-width: unset; }
   .case-section, .tl-section, .contact-section, .skills-section { padding-left: 14px; padding-right: 14px; }
 }
 

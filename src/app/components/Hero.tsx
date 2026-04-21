@@ -3,56 +3,40 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
+import {
+  SiNextdotjs,
+  SiReact,
+  SiTypescript,
+  SiTailwindcss,
+  SiMysql,
+} from "react-icons/si";
 
 const LOGOS = [
   {
-    name: "ClickUp",
-    icon: (
-      <svg key="cu" width="14" height="14" viewBox="0 0 16 16" fill="none">
-        <path
-          d="M2 10l6-6 6 6"
-          stroke="#7B68EE"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M4 13l4-4 4 4"
-          stroke="#00D1B2"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
+    name: "Next.js",
+    icon: <SiNextdotjs size={18} color="#ffffff" />,
   },
   {
-    name: "Dropbox",
-    icon: (
-      <svg key="db" width="14" height="14" viewBox="0 0 40 40" fill="#0061FF">
-        <polygon points="10,4 20,11 10,18 0,11" />
-        <polygon points="30,4 40,11 30,18 20,11" />
-        <polygon points="0,22 10,29 20,22 10,15" />
-        <polygon points="20,22 30,29 40,22 30,15" />
-        <polygon points="10,31 20,24 30,31 20,38" />
-      </svg>
-    ),
+    name: "React",
+    icon: <SiReact size={18} color="#61DAFB" />,
   },
-  { name: "PAYCHEX", icon: null },
   {
-    name: "elastic",
-    icon: (
-      <svg key="el" width="14" height="14" viewBox="0 0 30 30">
-        <circle cx="15" cy="8" r="7" fill="#FEC514" />
-        <circle cx="15" cy="22" r="7" fill="#00BFB3" />
-      </svg>
-    ),
+    name: "TypeScript",
+    icon: <SiTypescript size={18} color="#3178C6" />,
   },
-  { name: "stripe", icon: null },
+  {
+    name: "Tailwind",
+    icon: <SiTailwindcss size={18} color="#38BDF8" />,
+  },
+  {
+    name: "SQL",
+    icon: <SiMysql size={18} color="#00758F" />, // بهترین نزدیک‌ترین برای SQL
+  },
 ];
 
 export default function Hero() {
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const roleRef = useRef<HTMLParagraphElement>(null);
   const introRef = useRef<HTMLParagraphElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
   const avatarRef = useRef<HTMLDivElement>(null);
@@ -63,33 +47,35 @@ export default function Hero() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       tl.from(avatarRef.current, {
-        x: 50,
+        x: 60,
         opacity: 0,
         duration: 0.9,
-        delay: 0.4,
+        delay: 0.3,
       });
       tl.from(
         headingRef.current,
-        { y: 32, opacity: 0, duration: 0.7 },
-        "-=0.6",
+        { y: 36, opacity: 0, duration: 0.7 },
+        "-=0.65",
       );
-      tl.from(introRef.current, { y: 20, opacity: 0, duration: 0.6 }, "-=0.4");
-      tl.from(btnRef.current, { y: 20, opacity: 0, duration: 0.5 }, "-=0.3");
+      tl.from(roleRef.current, { y: 20, opacity: 0, duration: 0.5 }, "-=0.45");
+      tl.from(introRef.current, { y: 20, opacity: 0, duration: 0.55 }, "-=0.4");
+      tl.from(btnRef.current, { y: 20, opacity: 0, duration: 0.5 }, "-=0.35");
       tl.from(workedRef.current, { opacity: 0, duration: 0.4 }, "-=0.1");
       if (logosRef.current) {
         tl.from(
           logosRef.current.children,
-          { opacity: 0, y: 12, stagger: 0.07, duration: 0.35 },
+          { opacity: 0, y: 14, stagger: 0.08, duration: 0.4 },
           "-=0.2",
         );
       }
+      // Continuous green glow on button
       gsap.to(btnRef.current, {
-        boxShadow: "0 0 36px 10px rgba(74,222,128,0.65)",
+        boxShadow: "0 0 40px 12px rgba(74,222,128,0.7)",
         repeat: -1,
         yoyo: true,
         duration: 1.6,
         ease: "sine.inOut",
-        delay: 1.8,
+        delay: 2,
       });
     });
     return () => ctx.revert();
@@ -97,130 +83,150 @@ export default function Hero() {
 
   return (
     <section id="home" className="hero-section">
+      {/* ── Main row: text left, avatar right ── */}
       <div className="hero-row">
-        {/* Text */}
+        {/* Left: copy */}
         <div className="hero-text">
           <h1
             ref={headingRef}
             style={{
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: "clamp(1.75rem, 5vw, 3.2rem)",
+              fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
               fontWeight: 700,
-              color: "#fff",
+              color: "#ffffff",
               margin: 0,
-              lineHeight: 1.15,
+              lineHeight: 1.1,
             }}
           >
             Hoda Kakhki
           </h1>
+
           <p
+            ref={roleRef}
             style={{
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: "clamp(0.75rem, 1.8vw, 0.95rem)",
+              fontSize: "clamp(0.8rem, 1.4vw, 1rem)",
               color: "#22c55e",
               margin: 0,
-              letterSpacing: "0.08em",
+              letterSpacing: "0.1em",
               fontWeight: 600,
             }}
           >
             Frontend Developer
           </p>
+
           <p
             ref={introRef}
             style={{
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: "clamp(0.72rem, 1.5vw, 0.875rem)",
+              fontSize: "clamp(0.75rem, 1.3vw, 0.9rem)",
               color: "#9ca3af",
               lineHeight: 1.8,
               margin: 0,
+              maxWidth: 420,
             }}
           >
-            Frontend Developer with 4+ years of experience building dashboards
-            and data-heavy web applications using React, Next.js, and Vue.
+            Frontend Developer with 4+ years of experience building scalable,
+            data-driven web applications using React, Next.js, and Vue. I
+            specialize in transforming complex data into intuitive user
+            interfaces, optimizing performance, and maintaining clean,
+            maintainable codebases. Currently pursuing a Master’s in Computer
+            Science in Germany and open to working student and full-time
+            opportunities.
           </p>
+
+          {/* CTA button — matches screenshot: wide, big, glowing green */}
           <button
             ref={btnRef}
             onMouseEnter={() =>
-              gsap.to(btnRef.current, { scale: 1.04, duration: 0.18 })
+              gsap.to(btnRef.current, { scale: 1.03, duration: 0.18 })
             }
             onMouseLeave={() =>
               gsap.to(btnRef.current, { scale: 1, duration: 0.18 })
             }
-            onClick={(e) => {
-              e.preventDefault();
+            onClick={() =>
               document
                 .querySelector("#get-in-touch")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
             style={{
-              width: "fit-content",
-              padding: "clamp(11px,2vw,15px) clamp(20px,4vw,40px)",
+              marginTop: 12,
+              width: "100%",
+              maxWidth: 320,
+              padding: "18px 0",
               backgroundColor: "#22c55e",
-              color: "#000",
+              color: "#000000",
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: "clamp(0.72rem, 1.3vw, 0.875rem)",
+              fontSize: "clamp(0.8rem, 1.3vw, 0.95rem)",
               fontWeight: 700,
               letterSpacing: "0.1em",
               border: "none",
-              borderRadius: 6,
+              borderRadius: 8,
               cursor: "pointer",
-              boxShadow: "0 0 22px 5px rgba(74,222,128,0.45)",
+              boxShadow: "0 0 24px 6px rgba(74,222,128,0.5)",
               transition: "background-color 0.2s",
-              position: "relative",
-              marginTop: "80px",
             }}
           >
             Let&apos;s get started &gt;
           </button>
         </div>
 
-        {/* Avatar */}
-        <div ref={avatarRef} className="hero-avatar">
+        {/* Right: circular avatar — position relative for Next.js Image fill */}
+        <div
+          ref={avatarRef}
+          className="hero-avatar"
+          style={{ position: "relative" }}
+        >
           <Image
             src="/hero.jpg"
             alt="Hoda Kakhki"
             fill
             style={{ objectFit: "cover" }}
+            priority
           />
-                 </div>
+        </div>
       </div>
 
-      {/* Logos */}
-      <div style={{ marginTop: "clamp(28px, 5vw, 48px)" }}>
+      {/* ── "Worked with" logo bar ── */}
+      <div style={{ marginTop: "clamp(32px, 5vw, 56px)" }}>
         <p
           ref={workedRef}
           style={{
             fontFamily: "'JetBrains Mono', monospace",
-            fontSize: "clamp(0.7rem, 1.2vw, 0.875rem)",
+            fontSize: "clamp(0.75rem, 1.2vw, 0.875rem)",
             color: "#6b7280",
-            marginBottom: 12,
+            marginBottom: 16,
             letterSpacing: "0.04em",
           }}
         >
           Worked with
         </p>
+
         <div ref={logosRef} className="hero-logos">
           {LOGOS.map((logo) => (
             <div
               key={logo.name}
               className="hero-logo-pill"
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontWeight: 600,
-              }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.background =
-                  "rgba(255,255,255,0.08)";
-                (e.currentTarget as HTMLDivElement).style.color = "#fff";
+                (e.currentTarget as HTMLDivElement).style.backgroundColor =
+                  "rgba(255,255,255,0.09)";
+                (e.currentTarget as HTMLDivElement).style.color = "#ffffff";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.background =
-                  "rgba(255,255,255,0.04)";
-                (e.currentTarget as HTMLDivElement).style.color = "#d1d5db";
+                (e.currentTarget as HTMLDivElement).style.backgroundColor =
+                  "transparent";
+                (e.currentTarget as HTMLDivElement).style.color = "#9ca3af";
               }}
             >
               {logo.icon}
-              {logo.name}
+              <span
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontWeight: 600,
+                }}
+              >
+                {logo.name}
+              </span>
             </div>
           ))}
         </div>
