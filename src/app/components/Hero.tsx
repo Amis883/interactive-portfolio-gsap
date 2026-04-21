@@ -126,13 +126,11 @@ export default function Hero() {
               maxWidth: 420,
             }}
           >
-            Frontend Developer with 4+ years of experience building scalable,
-            data-driven web applications using React, Next.js, and Vue. I
-            specialize in transforming complex data into intuitive user
-            interfaces, optimizing performance, and maintaining clean,
-            maintainable codebases. Currently pursuing a Master’s in Computer
-            Science in Germany and open to working student and full-time
-            opportunities.
+            Frontend Developer building reliable web applications, with a focus
+            on dashboards and data-heavy systems. I work on making complex data
+            easier to understand, improving performance, and keeping the
+            frontend maintainable. Based in Germany and open to working student
+            and full-time roles.
           </p>
 
           {/* CTA button — matches screenshot: wide, big, glowing green */}

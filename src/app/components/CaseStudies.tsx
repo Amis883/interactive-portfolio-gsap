@@ -6,48 +6,90 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// const caseStudies = [
+//   {
+//     id: 1,
+//     tag: "Pharma",
+//     tagStyle: { background: "#ccfbf1", color: "#0f766e" },
+//     btnStyle: { background: "#14b8a6" },
+//     btnHover: "#2dd4bf",
+//     title: "Portfolio",
+//     description:
+//       "Built a modern, interactive portfolio using Next.js, Tailwind CSS, and GSAP. Fused on performance, smooth animations, and creating a clean, engaging user experience. Designed to showcase projects while reflecting strong attention to detail.",
+//     imageAlt: "Pharma case study",
+//     imageBg: "linear-gradient(150deg,#7EEFC4,#34C98A)",
+//     layout: "image-right" as const,
+//   },
+//   {
+//     id: 2,
+//     tag: "Fintech",
+//     tagStyle: { background: "#fef3c7", color: "#92400e" },
+//     btnStyle: { background: "#f59e0b" },
+//     btnHover: "#fbbf24",
+//     title: "Admin User Management Dashboard",
+//     description:
+//       "Built a responsive admin dashboard to manage large sets of user data efficiently. Designed filtering, pagination, and dynamic tables to make data easier to navigate and interact with. Focused on performance and usability to handle real-world data scenarios.",
+//     imageAlt: "Fintech case study",
+//     imageBg: "linear-gradient(150deg,#FDDBA0,#F9A84D)",
+//     layout: "image-right" as const,
+//   },
+//   {
+//     id: 3,
+//     tag: "EdTech",
+//     tagStyle: { background: "#dbeafe", color: "#1e40af" },
+//     btnStyle: { background: "#2563eb" },
+//     btnHover: "#3b82f6",
+//     title: "AI Notes Application",
+//     description:
+//       "Built an AI-powered note-taking app that helps users generate and organize structured notes. Integrated AI features with a clean interface to simplify how users create and manage content. Focused on building a smooth, practical experience around AI-driven workflows.",
+//     imageAlt: "EdTech case study",
+//     imageBg: "linear-gradient(150deg,#2D3A4F,#1A2535)",
+//     layout: "image-left" as const,
+//   },
+// ];
 const caseStudies = [
   {
     id: 1,
-    tag: "Fintech",
-    tagStyle: { background: "#fef3c7", color: "#92400e" },
-    btnStyle: { background: "#f59e0b" },
-    btnHover: "#fbbf24",
-    title: "Work name here",
+    tag: "Frontend / UI",
+    title: "Portfolio",
+    tagStyle: { background: "#ccfbf1", color: "#0f766e" },
+    btnStyle: { background: "#14b8a6" },
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. sed do eiusmod tempor incididunt ut labore et dolore magna.",
-    imageAlt: "Fintech case study",
-    imageBg: "linear-gradient(150deg,#FDDBA0,#F9A84D)",
+      "Built a modern, interactive portfolio using Next.js, Tailwind CSS, and GSAP. Fused on performance, smooth animations, and creating a clean, engaging user experience. Designed to showcase projects while reflecting strong attention to detail.",
+    image: "/images/portfolio.png",
+    imageAlt:
+      "Interactive portfolio built with Next.js, Tailwind CSS, and GSAP",
+    imageBg: "linear-gradient(150deg,#7EEFC4,#34C98A)",
     layout: "image-right" as const,
   },
   {
     id: 2,
-    tag: "EdTech",
-    tagStyle: { background: "#dbeafe", color: "#1e40af" },
-    btnStyle: { background: "#2563eb" },
-    btnHover: "#3b82f6",
-    title: "Work name here",
+    tag: "Dashboard / Data UI",
+    title: "Admin User Management Dashboard",
+    tagStyle: { background: "#fef3c7", color: "#92400e" },
+    btnStyle: { background: "#f59e0b" },
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. sed do eiusmod tempor incididunt ut labore et dolore magna.",
-    imageAlt: "EdTech case study",
-    imageBg: "linear-gradient(150deg,#2D3A4F,#1A2535)",
-    layout: "image-left" as const,
+      "Built a responsive admin dashboard to manage large sets of user data efficiently. Designed filtering, pagination, and dynamic tables to make data easier to navigate and interact with. Focused on performance and usability to handle real-world data scenarios.",
+    image: "/images/dashboard.png",
+    imageAlt:
+      "Admin dashboard with data tables, filtering, and user management",
+    imageBg: "linear-gradient(150deg,#FDDBA0,#F9A84D)",
+    layout: "image-right" as const,
   },
   {
     id: 3,
-    tag: "Pharma",
-    tagStyle: { background: "#ccfbf1", color: "#0f766e" },
-    btnStyle: { background: "#14b8a6" },
-    btnHover: "#2dd4bf",
-    title: "Work name here",
+    tag: "AI / Productivity",
+    title: "AI Notes Application",
+    tagStyle: { background: "#dbeafe", color: "#1e40af" },
+    btnStyle: { background: "#2563eb" },
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. sed do eiusmod tempor incididunt ut labore et dolore magna.",
-    imageAlt: "Pharma case study",
-    imageBg: "linear-gradient(150deg,#7EEFC4,#34C98A)",
-    layout: "image-right" as const,
+      "Built an AI-powered note-taking app that helps users generate and organize structured notes. Integrated AI features with a clean interface to simplify how users create and manage content. Focused on building a smooth, practical experience around AI-driven workflows.",
+    image: "/images/ai-notes.png",
+    imageAlt: "AI-powered note taking app with structured content generation",
+    imageBg: "linear-gradient(150deg,#2D3A4F,#1A2535)",
+    layout: "image-left" as const,
   },
 ];
-
 function CaseStudyCard({ study }: { study: (typeof caseStudies)[0] }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLDivElement>(null);
@@ -227,10 +269,10 @@ export default function CaseStudies() {
               margin: "0 auto",
             }}
           >
-            Solving user &amp; business problems since last 15+ years.
-            <br />
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Over the past few years, I’ve worked on dashboards and <br />{" "}
+            data-heavy applications. I’ve improved performance, handled complex
+            data, and built features used in production. I focus on turning
+            complex data into clear, usable interfaces.
           </p>
         </div>
         <div
