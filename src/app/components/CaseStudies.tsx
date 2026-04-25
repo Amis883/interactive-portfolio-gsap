@@ -12,27 +12,31 @@ const caseStudies = [
     id: 1,
     tag: "Frontend / UI",
     tagStyle: { background: "#ccfbf1", color: "#0f766e" },
-    btnStyle: { background: "#14b8a6" }, btnHover: "#0d9488",
+    btnStyle: { background: "#14b8a6" },
+    btnHover: "#0d9488",
     title: "Portfolio",
     description:
       "Built a modern, interactive portfolio using Next.js, Tailwind CSS, and GSAP. Fused on performance, smooth animations, and creating a clean, engaging user experience. Designed to showcase projects while reflecting strong attention to detail.",
     image: "/portfolio.png",
-    imageAlt: "Interactive portfolio built with Next.js, Tailwind CSS, and GSAP",
+    imageAlt:
+      "Interactive portfolio built with Next.js, Tailwind CSS, and GSAP",
     accentColor: "#14b8a6",
     shadowColor: "rgba(20,184,166,0.25)",
-    link: "https://hoda-portfolio-m0c8zsv98-amis883s-projects.vercel.app/",
+    link: "https://interactive-portfolio-gsap.vercel.app/",
     layout: "image-right" as const,
   },
   {
     id: 2,
     tag: "Dashboard / Data UI",
     tagStyle: { background: "#fef3c7", color: "#92400e" },
-    btnStyle: { background: "#f59e0b" }, btnHover: "#d97706",
+    btnStyle: { background: "#f59e0b" },
+    btnHover: "#d97706",
     title: "Admin User Management Dashboard",
     description:
       "Built a responsive admin dashboard to manage large sets of user data efficiently. Designed filtering, pagination, and dynamic tables to make data easier to navigate and interact with. Focused on performance and usability to handle real-world data scenarios.",
     image: "/dashboard.png",
-    imageAlt: "Admin dashboard with data tables, filtering, and user management",
+    imageAlt:
+      "Admin dashboard with data tables, filtering, and user management",
     accentColor: "#f59e0b",
     shadowColor: "rgba(245,158,11,0.25)",
     link: "https://hoda-portfolio-ruby.vercel.app/admin/users",
@@ -42,7 +46,8 @@ const caseStudies = [
     id: 3,
     tag: "AI / Productivity",
     tagStyle: { background: "#dbeafe", color: "#1e40af" },
-    btnStyle: { background: "#2563eb" }, btnHover: "#1d4ed8",
+    btnStyle: { background: "#2563eb" },
+    btnHover: "#1d4ed8",
     title: "AI Notes Application",
     description:
       "Built an AI-powered note-taking app that helps users generate and organize structured notes. Integrated AI features with a clean interface to simplify how users create and manage content. Focused on building a smooth, practical experience around AI-driven workflows.",
@@ -93,9 +98,30 @@ function BrowserMockup({
       >
         {/* Traffic lights */}
         <div style={{ display: "flex", gap: 6 }}>
-          <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#fc605b" }} />
-          <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#fdbc40" }} />
-          <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#34c749" }} />
+          <div
+            style={{
+              width: 10,
+              height: 10,
+              borderRadius: "50%",
+              background: "#fc605b",
+            }}
+          />
+          <div
+            style={{
+              width: 10,
+              height: 10,
+              borderRadius: "50%",
+              background: "#fdbc40",
+            }}
+          />
+          <div
+            style={{
+              width: 10,
+              height: 10,
+              borderRadius: "50%",
+              background: "#34c749",
+            }}
+          />
         </div>
         {/* Fake URL bar */}
         <div
@@ -119,7 +145,14 @@ function BrowserMockup({
       </div>
 
       {/* Screenshot */}
-      <div style={{ position: "relative", aspectRatio: "16/10", overflow: "hidden", background: "#f8fafc" }}>
+      <div
+        style={{
+          position: "relative",
+          aspectRatio: "16/10",
+          overflow: "hidden",
+          background: "#f8fafc",
+        }}
+      >
         <Image
           src={image}
           alt={alt}
@@ -134,7 +167,8 @@ function BrowserMockup({
             left: 0,
             right: 0,
             height: "40%",
-            background: "linear-gradient(to top, rgba(255,255,255,0.5), transparent)",
+            background:
+              "linear-gradient(to top, rgba(255,255,255,0.5), transparent)",
             pointerEvents: "none",
           }}
         />
@@ -146,20 +180,31 @@ function BrowserMockup({
 /* ── Single case study row ── */
 function CaseStudyCard({ study }: { study: (typeof caseStudies)[0] }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const imgRef  = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const btnRef  = useRef<HTMLButtonElement>(null);
+  const btnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       const fromText = study.layout === "image-right" ? -36 : 36;
-      const fromImg  = study.layout === "image-right" ? 36 : -36;
+      const fromImg = study.layout === "image-right" ? 36 : -36;
       const tl = gsap.timeline({
-        scrollTrigger: { trigger: cardRef.current, start: "top 85%", toggleActions: "play none none none" },
+        scrollTrigger: {
+          trigger: cardRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
         defaults: { ease: "power3.out" },
       });
-      tl.from(textRef.current, { x: fromText, opacity: 0, duration: 0.75 })
-        .from(imgRef.current,  { x: fromImg,  opacity: 0, duration: 0.75 }, "-=0.5");
+      tl.from(textRef.current, {
+        x: fromText,
+        opacity: 0,
+        duration: 0.75,
+      }).from(
+        imgRef.current,
+        { x: fromImg, opacity: 0, duration: 0.75 },
+        "-=0.5",
+      );
     });
     return () => ctx.revert();
   }, [study.layout]);
@@ -167,31 +212,51 @@ function CaseStudyCard({ study }: { study: (typeof caseStudies)[0] }) {
   const TextBlock = (
     <div
       ref={textRef}
-      style={{ flex: "1 1 280px", minWidth: 0, display: "flex", flexDirection: "column", gap: 16 }}
+      style={{
+        flex: "1 1 280px",
+        minWidth: 0,
+        display: "flex",
+        flexDirection: "column",
+        gap: 16,
+      }}
     >
-      <span style={{
-        ...study.tagStyle,
-        display: "inline-block", width: "fit-content",
-        padding: "5px 14px", borderRadius: 999,
-        fontSize: "clamp(11px,1.5vw,12px)",
-        fontFamily: "'JetBrains Mono',monospace", fontWeight: 600,
-      }}>
+      <span
+        style={{
+          ...study.tagStyle,
+          display: "inline-block",
+          width: "fit-content",
+          padding: "5px 14px",
+          borderRadius: 999,
+          fontSize: "clamp(11px,1.5vw,12px)",
+          fontFamily: "'JetBrains Mono',monospace",
+          fontWeight: 600,
+        }}
+      >
         {study.tag}
       </span>
 
-      <h2 style={{
-        fontFamily: "sans-serif", fontWeight: 700,
-        fontSize: "clamp(1.3rem,3.5vw,2rem)",
-        color: "#111827", lineHeight: 1.2, margin: 0,
-      }}>
+      <h2
+        style={{
+          fontFamily: "sans-serif",
+          fontWeight: 700,
+          fontSize: "clamp(1.3rem,3.5vw,2rem)",
+          color: "#111827",
+          lineHeight: 1.2,
+          margin: 0,
+        }}
+      >
         {study.title}
       </h2>
 
-      <p style={{
-        fontFamily: "'JetBrains Mono',monospace",
-        fontSize: "clamp(0.7rem,1.3vw,0.8125rem)",
-        color: "#6b7280", lineHeight: 1.8, margin: 0,
-      }}>
+      <p
+        style={{
+          fontFamily: "'JetBrains Mono',monospace",
+          fontSize: "clamp(0.7rem,1.3vw,0.8125rem)",
+          color: "#6b7280",
+          lineHeight: 1.8,
+          margin: 0,
+        }}
+      >
         {study.description}
       </p>
 
@@ -212,18 +277,34 @@ function CaseStudyCard({ study }: { study: (typeof caseStudies)[0] }) {
         }}
         style={{
           ...study.btnStyle,
-          width: "fit-content", padding: "12px 26px",
-          borderRadius: 8, border: "none", color: "#fff",
+          width: "fit-content",
+          padding: "12px 26px",
+          borderRadius: 8,
+          border: "none",
+          color: "#fff",
           fontFamily: "'JetBrains Mono',monospace",
           fontSize: "clamp(0.7rem,1.2vw,0.8125rem)",
-          fontWeight: 700, letterSpacing: "0.04em",
-          cursor: "pointer", transition: "background 0.2s",
-          display: "flex", alignItems: "center", gap: 6,
+          fontWeight: 700,
+          letterSpacing: "0.04em",
+          cursor: "pointer",
+          transition: "background 0.2s",
+          display: "flex",
+          alignItems: "center",
+          gap: 6,
         }}
       >
         View case study
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M5 12h14M12 5l7 7-7 7" />
         </svg>
       </button>
     </div>
@@ -244,11 +325,24 @@ function CaseStudyCard({ study }: { study: (typeof caseStudies)[0] }) {
     <div
       ref={cardRef}
       className="case-row"
-      style={{ display: "flex", alignItems: "center", gap: "clamp(28px,5vw,56px)", flexWrap: "wrap" }}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "clamp(28px,5vw,56px)",
+        flexWrap: "wrap",
+      }}
     >
-      {study.layout === "image-right"
-        ? <>{TextBlock}{ImageBlock}</>
-        : <>{ImageBlock}{TextBlock}</>}
+      {study.layout === "image-right" ? (
+        <>
+          {TextBlock}
+          {ImageBlock}
+        </>
+      ) : (
+        <>
+          {ImageBlock}
+          {TextBlock}
+        </>
+      )}
     </div>
   );
 }
@@ -260,7 +354,10 @@ export default function CaseStudies() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(headingRef.current, {
-        y: 28, opacity: 0, duration: 0.8, ease: "power3.out",
+        y: 28,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
         scrollTrigger: { trigger: headingRef.current, start: "top 85%" },
       });
     });
@@ -270,28 +367,46 @@ export default function CaseStudies() {
   return (
     <section id="case-studies" className="case-section">
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-
-        <div ref={headingRef} style={{ textAlign: "center", marginBottom: "clamp(40px,6vw,80px)" }}>
-          <h1 style={{
-            fontFamily: "sans-serif", fontWeight: 700,
-            fontSize: "clamp(1.7rem,5vw,3rem)",
-            color: "#111827", marginBottom: 16,
-          }}>
+        <div
+          ref={headingRef}
+          style={{ textAlign: "center", marginBottom: "clamp(40px,6vw,80px)" }}
+        >
+          <h1
+            style={{
+              fontFamily: "sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(1.7rem,5vw,3rem)",
+              color: "#111827",
+              marginBottom: 16,
+            }}
+          >
             Case Studies
           </h1>
-          <p style={{
-            fontFamily: "'JetBrains Mono',monospace",
-            fontSize: "clamp(0.7rem,1.3vw,0.8125rem)",
-            color: "#6b7280", lineHeight: 1.8,
-            maxWidth: 480, margin: "0 auto",
-          }}>
+          <p
+            style={{
+              fontFamily: "'JetBrains Mono',monospace",
+              fontSize: "clamp(0.7rem,1.3vw,0.8125rem)",
+              color: "#6b7280",
+              lineHeight: 1.8,
+              maxWidth: 480,
+              margin: "0 auto",
+            }}
+          >
             A selection of real projects built from scratch — focused on
             performance, clean UI, and practical user experience.
           </p>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(56px,8vw,100px)" }}>
-          {caseStudies.map((s) => <CaseStudyCard key={s.id} study={s} />)}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "clamp(56px,8vw,100px)",
+          }}
+        >
+          {caseStudies.map((s) => (
+            <CaseStudyCard key={s.id} study={s} />
+          ))}
         </div>
       </div>
     </section>
