@@ -2,7 +2,7 @@
 
 A fully responsive personal portfolio website built from scratch with **Next.js 15**, **TypeScript**, **Tailwind CSS**, and **GSAP**. Designed to showcase frontend skills, work experience, case studies, and contact information with smooth scroll-triggered animations throughout.
 
-🔗 **Live:** [[coming soon!)](https://interactive-portfolio-gsap.vercel.app/)
+🔗 **Live:** (https://interactive-portfolio-gsap.vercel.app/)
 
 ---
 
