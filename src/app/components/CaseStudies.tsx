@@ -54,6 +54,7 @@ const caseStudies = [
     title: "Portfolio",
     tagStyle: { background: "#ccfbf1", color: "#0f766e" },
     btnStyle: { background: "#14b8a6" },
+    btnHover: "#2dd4bf",
     description:
       "Built a modern, interactive portfolio using Next.js, Tailwind CSS, and GSAP. Fused on performance, smooth animations, and creating a clean, engaging user experience. Designed to showcase projects while reflecting strong attention to detail.",
     image: "/images/portfolio.png",
@@ -68,6 +69,7 @@ const caseStudies = [
     title: "Admin User Management Dashboard",
     tagStyle: { background: "#fef3c7", color: "#92400e" },
     btnStyle: { background: "#f59e0b" },
+    btnHover: "#fbbf24",
     description:
       "Built a responsive admin dashboard to manage large sets of user data efficiently. Designed filtering, pagination, and dynamic tables to make data easier to navigate and interact with. Focused on performance and usability to handle real-world data scenarios.",
     image: "/images/dashboard.png",
@@ -82,6 +84,7 @@ const caseStudies = [
     title: "AI Notes Application",
     tagStyle: { background: "#dbeafe", color: "#1e40af" },
     btnStyle: { background: "#2563eb" },
+    btnHover: "#3b82f6",
     description:
       "Built an AI-powered note-taking app that helps users generate and organize structured notes. Integrated AI features with a clean interface to simplify how users create and manage content. Focused on building a smooth, practical experience around AI-driven workflows.",
     image: "/images/ai-notes.png",
