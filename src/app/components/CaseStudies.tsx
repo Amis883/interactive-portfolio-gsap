@@ -22,7 +22,7 @@ const caseStudies = [
       "Interactive portfolio built with Next.js, Tailwind CSS, and GSAP",
     accentColor: "#14b8a6",
     shadowColor: "rgba(20,184,166,0.25)",
-    link: "https://interactive-portfolio-gsap.vercel.app/",
+    link: "https://hoda-portfolio-m0c8zsv98-amis883s-projects.vercel.app/",
     layout: "image-right" as const,
   },
   {
@@ -56,6 +56,22 @@ const caseStudies = [
     accentColor: "#2563eb",
     shadowColor: "rgba(37,99,235,0.25)",
     link: "https://ai-notes-steel-zeta.vercel.app/",
+    layout: "image-left" as const,
+  },
+  {
+    id: 4,
+    tag: "E-Commerce / Shopify",
+    tagStyle: { background: "#fdf2f8", color: "#86198f" },
+    btnStyle: { background: "#a21caf" },
+    btnHover: "#86198f",
+    title: "Lumire — Skincare Shopify Store",
+    description:
+      "Designed and built a luxury skincare e-commerce store on Shopify. Focused on elegant product presentation, smooth UX, and a clean editorial aesthetic. Implemented custom sections, responsive layouts, and conversion-focused product pages to deliver a premium brand experience.",
+    image: "/skincare.png",
+    imageAlt: "Lumire luxury skincare Shopify store",
+    accentColor: "#a21caf",
+    shadowColor: "rgba(162,28,175,0.2)",
+    link: "#",
     layout: "image-right" as const,
   },
 ];
